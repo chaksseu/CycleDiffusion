@@ -50,10 +50,10 @@ The architecture consists of **two diffusion models**:
 
 | Metric | DiffVC | CycleDiffusion | Improvement |
 |--------|--------|----------------|-------------|
-| **Cosine Similarity** | 0.6880 | **0.7223** | +5.0% |
-| **ASR Accuracy** | 71.3% | **74.4%** | +10.8% error reduction |
-| **Mel-Cepstral Distance** | 5.90 | **5.09** | ↓ 15.9% |
-| **MOS Score** | 3.50 | **3.70** | +5.7% |
+| **Cosine Similarity (↑)** | 0.6880 | **0.7223** | +5.0% |
+| **ASR Accuracy (↑)** | 71.3% | **74.4%** | +4.4% |
+| **Mel-Cepstral Distance (↓)** | 5.90 | **5.09** | -15.9% |
+| **MOS Score (↑)** | 3.50 | **3.70** | +5.7% |
 
 > ✅ Reduced variance and increased intelligibility in converted speech.
 
