@@ -16,6 +16,16 @@
 
 ---
 
+## 🧠 Architecture
+
+<p align="center">
+  <img src="image.png" alt="CycleDiffusion Architecture" width="700"/>
+</p>
+
+The diagram above illustrates the overall architecture of CycleDiffusion. It consists of two diffusion models operating in a cycle: one for converting input voice features to the target domain, and another for reconstructing the original voice through reverse diffusion, enabling strong cycle consistency.
+
+---
+
 ## 🚩 Highlights
 
 - **Cycle-Consistent Diffusion Architecture**  
@@ -49,14 +59,3 @@ URL = {https://www.mdpi.com/2076-3417/14/20/9595},
 ISSN = {2076-3417},
 DOI = {10.3390/app14209595}
 }
-```
-
-## 🙏 Acknowledgements
-
-This work builds upon or was mainly inspired by:
-
-- **[DiffVC](https://arxiv.org/abs/2204.02488)** – A diffusion-based voice conversion baseline that provided strong foundations for this work.
-
-We sincerely thank the authors and contributors of these projects for making their work openly available. Their contributions were invaluable in the development and evaluation of CycleDiffusion.
-
----
