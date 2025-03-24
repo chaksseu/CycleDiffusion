@@ -55,8 +55,6 @@ The architecture consists of **two diffusion models**:
 | **Mel-Cepstral Distance (↓)** | 5.90 | **5.09** | -15.9% |
 | **MOS Score (↑)** | 3.50 | **3.70** | +5.7% |
 
-> ✅ Reduced variance and increased intelligibility in converted speech.
-
 ---
 
 ## 📖 Citation
