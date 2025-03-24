@@ -1,6 +1,6 @@
 # CycleDiffusion
 
-**CycleDiffusion** is a novel voice conversion (VC) framework that leverages *cycle-consistent diffusion models* to enhance the quality and consistency of converted speech. By learning both reconstruction and conversion paths using diffusion architectures, our model achieves superior performance for non-parallel, many-to-many voice conversion tasks.
+**CycleDiffusion** is a novel *cycle-consistent diffusion model* designed for **non-parallel, many-to-many voice conversion (VC)**. By simultaneously learning both **reconstruction and conversion paths**, CycleDiffusion outperforms conventional VAE- and GAN-based VC models in **speaker similarity**, **linguistic preservation**, and **speech naturalness**.
 
 ---
 
@@ -10,9 +10,11 @@
 > Dongsuk Yook, Geonhee Han, Hyung-Pil Chang, and In-Chul Yoo  
 > [*Applied Sciences, 2024*](https://doi.org/10.3390/app14209595)
 
-### Main Contributions:
-- Proposing a novel **Cycle-Consistent Diffusion Model** for voice conversion.
-- Introducing **Cycle Consistency Loss** to enhance semantic preservation across conversions.
+Voice conversion modifies a source speaker's voice to sound like that of a target speaker while preserving linguistic content. Diffusion Models (DMs) are promising due to their training stability and high-quality output. However, traditional DMs primarily learn reconstruction paths, limiting conversion quality. CycleDiffusion addresses this by:
+
+- Learning both **reconstruction and conversion paths**
+- Enforcing **cycle consistency loss** to preserve linguistic content
+- Operating without **parallel training data**
 
 ---
 
@@ -22,23 +24,42 @@
   <img src="image.png" alt="CycleDiffusion Architecture" width="700"/>
 </p>
 
-The diagram above illustrates the overall architecture of CycleDiffusion. It consists of two diffusion models operating in a cycle: one for converting input voice features to the target domain, and another for reconstructing the original voice through reverse diffusion, enabling strong cycle consistency.
+The architecture consists of **two diffusion models**:
+- One for **voice conversion** from source to target
+- One for **cycle reconstruction** back to the original
+
+**Solid lines** indicate reconstruction training (L<sub>diffusion</sub>),  
+**Dotted lines** indicate inference paths (conversion), and  
+**Dashed lines** indicate gradient-updated conversion paths (L<sub>cycle</sub>).
 
 ---
 
 ## 🚩 Highlights
 
-- **Cycle-Consistent Diffusion Architecture**  
-  Two diffusion models jointly trained for reconstruction and voice conversion.
-  
-- **Cycle Consistency Loss**  
-  Ensures preservation of linguistic content through cyclic conversions.
+- 🌀 **Cycle-Consistent Diffusion Architecture**  
+  Two score-based diffusion models jointly trained to reconstruct and convert speech.
 
-- **Non-parallel Training**  
-  Eliminates the need for paired training samples.
+- 🔁 **Cycle Consistency Loss**  
+  Minimizes the difference between the original and cyclically reconstructed speech, ensuring linguistic preservation.
 
-- **Comprehensive Evaluations**  
-  Speaker similarity, ASR-based linguistic preservation, Mel-Cepstral Distance (MCD), and subjective Mean Opinion Score (MOS).
+- 🔗 **Non-parallel Training**  
+  No need for aligned utterances across speakers.
+
+- 📊 **Robust Performance**  
+  Outperforms baseline DiffVC in cosine similarity, ASR accuracy, Mel-Cepstral Distance (MCD), and MOS.
+
+---
+
+## 📊 Experimental Results (vs. DiffVC)
+
+| Metric | DiffVC | CycleDiffusion | Improvement |
+|--------|--------|----------------|-------------|
+| **Cosine Similarity** | 0.6880 | **0.7223** | +5.0% |
+| **ASR Accuracy** | 71.3% | **74.4%** | +10.8% error reduction |
+| **Mel-Cepstral Distance** | 5.90 | **5.09** | ↓ 15.9% |
+| **MOS Score** | 3.50 | **3.70** | +5.7% |
+
+> ✅ Reduced variance and increased intelligibility in converted speech.
 
 ---
 
@@ -59,3 +80,14 @@ URL = {https://www.mdpi.com/2076-3417/14/20/9595},
 ISSN = {2076-3417},
 DOI = {10.3390/app14209595}
 }
+```
+
+## 🙏 Acknowledgements
+
+This work builds upon and was inspired by:
+
+- **[DiffVC](https://arxiv.org/abs/2204.02488)** – A diffusion-based voice conversion baseline that provided strong foundations for this work.
+- **[MaskCycleGAN-VC](https://arxiv.org/abs/2102.12841)** – Prior works that introduced the concept of cycle consistency in voice conversion.
+- **[HiFi-GAN](https://arxiv.org/abs/2010.05646)** – Used as the vocoder for waveform reconstruction in our experiments.
+
+We sincerely thank the authors and contributors of these projects for making their work openly available. Their contributions were invaluable in the development and evaluation of CycleDiffusion.
