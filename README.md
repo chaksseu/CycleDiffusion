@@ -28,10 +28,6 @@ The architecture consists of **two diffusion models**:
 - One for **voice conversion** from source to target
 - One for **cycle reconstruction** back to the original
 
-**Solid lines** indicate reconstruction training (L<sub>diffusion</sub>),  
-**Dotted lines** indicate inference paths (conversion), and  
-**Dashed lines** indicate gradient-updated conversion paths (L<sub>cycle</sub>).
-
 ---
 
 ## 🚩 Highlights
